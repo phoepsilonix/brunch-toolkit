@@ -3650,6 +3650,9 @@ finalize_installation(){
       bento -c "Brunch install complete!" -e
     fi
     rm -rf ~/tmp/brunch-workspace/*
+    mount_target
+    [[ -e /etc/grub.d/40_custom ]] && sudo cat /etc/grub.d/40_custom ~/tmpmount/chromeos.img.grub.txt | sudo tee /etc/grub.d/99_brunch && sudo chmod 0755 /etc/grub.d/99_brunch && sync && sudo update-grub
+    unmount_target
     main_menu_startup
 }
 
