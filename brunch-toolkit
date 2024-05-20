@@ -3650,6 +3650,7 @@ finalize_installation(){
       bento -c "Brunch install complete!" -e
     fi
     rm -rf ~/tmp/brunch-workspace/*
+    [[ -e /etc/grub.d/40_custom ]] && sudo cat /etc/grub.d/40_custom ~/tmpmount/chromeos.img.grub.txt | sudo tee /etc/grub.d/99_brunch; sudo chmod 0755 /etc/grub.d/99_brunch && losetup | grep Chrome| cut -d" " -f1| xargs sudo losetup -d && sudo update-grub
     main_menu_startup
 }
 
