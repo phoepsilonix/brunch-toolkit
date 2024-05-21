@@ -3614,7 +3614,7 @@ prepare_installation(){
     cd ~/tmp/brunch-workspace
 
     if [[ "$toolkit_mode" =~ "brunch" ]] ; then
-        sudo chromeos-install -dst "$selected_dst"
+        sudo chromeos-install -dst "/dev/$selected_dst"
 
     elif [[ "$toolkit_mode" =~ "wsl" ]] ; then
         sudo bash chromeos-install.sh -dst "$downloads"/chromeos.img -src "$selected_src" -s "$selected_size"
@@ -3628,10 +3628,11 @@ prepare_installation(){
             $etcher
 
     elif [[ "$install_method" =~ "USB" ]] || [[ "$install_method" == "Singleboot" ]] ; then
-        sudo bash chromeos-install.sh -dst "$selected_dst" -src "$selected_src"
+        sudo bash chromeos-install.sh -dst "/dev/$selected_dst" -src "$selected_src"
 
     elif [[ "$install_method" =~ "IMG" ]] || [[ "$install_method" == "Dualboot" ]] ; then
         mount_target
+        #sudo bash chromeos-install.sh -dst "/dev/$selected_dst" -src "$selected_src" -s "$selected_size"
         sudo bash chromeos-install.sh -dst ~/tmpmount/chromeos.img -src "$selected_src" -s "$selected_size"
         unmount_target
     fi
