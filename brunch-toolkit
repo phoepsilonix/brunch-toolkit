@@ -1896,7 +1896,7 @@ select_a_recovery(){
     clear
     bento -n -t "Select a Recovery" -c "Fetching recoveries,  please wait..."
     if [[ "$detected_recovery" == "unsupported" ]] ; then
-    suggested_recoveries=("rammus" "volteer" "grunt" "zork")
+    suggested_recoveries=("bobba" "rammus" "volteer" "grunt" "zork")
     else
     get_chrome_recoveries=($(curl https://cros-updates-serving.appspot.com/ | grep 'id="' | cut -d\" -f2 | sed -e s/cros-updates/remove-this/))
     fi
@@ -1930,7 +1930,7 @@ select_a_recovery(){
             current_page="1"
         long_recovery_menu
     else
-         allrecoveries=("rammus" "volteer" "grunt" "zork")
+         allrecoveries=("bobba" "rammus" "volteer" "grunt" "zork")
          clear
          bento -t "Select a Recovery" -c "Please select which option you'd like to save as your preferred recovery." -m "${allrecoveries[@]}" div "Back" "Exit" -a -s "${allrecoveries[@]}" div "Go back to the previous page" "Exit without saving"
          case "$selection" in
